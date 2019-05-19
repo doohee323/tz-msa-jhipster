@@ -16,7 +16,7 @@ sudo sh -c "echo 'export HOME_DIR='$HOME_DIR >> $HOME_DIR/.bashrc"
 source $HOME_DIR/.bashrc
 
 ##########################################
-# install 
+# install jhipster
 ##########################################
 apt-get -y update
 apt-get -y upgrade
