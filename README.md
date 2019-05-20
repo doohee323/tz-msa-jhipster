@@ -1,4 +1,4 @@
-This is a microservice with jhipster on vagrant.
+microservice example with jhipster on vagrant.
 ==========================================================================
 
 # Features
