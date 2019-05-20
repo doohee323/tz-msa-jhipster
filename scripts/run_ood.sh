@@ -109,44 +109,40 @@ nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
 echo "making wallet docker image"
 ./mvnw package -Pdev -DskipTests verify jib:dockerBuild &
 
-
 echo "##########################################"
 echo "5) make jhipster-uaa with jhipster"
 echo "##########################################"
 cd /vagrant
-mkdir -p jhipster-uaa
-cd /vagrant/jhipster-uaa
+mkdir -p jhuaa
+cd /vagrant/jhuaa
 npm install
 
 # Fyi, you can follow these selections for jhipster Microservice app.
-? Which *type* of application would you like to create? JHipster UAA server (for microservice OAuth2 authentication)
-? What is the base name of your application? jhipster
-? As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts
-. 9999
-? What is your default Java package name? com.mycompany.myapp
-? Which service discovery server do you want to use? JHipster Registry (uses Eureka, provides Spring Cloud Config support and monitoring dash
-boards)
-? Which *type* of database would you like to use? SQL (H2, MySQL, MariaDB, PostgreSQL, Oracle, MSSQL)
-? Which *production* database would you like to use? MySQL
-? Which *development* database would you like to use? H2 with disk-based persistence
-? Do you want to use the Spring cache abstraction? Yes, with the Ehcache implementation (local cache, for a single node)
-? Do you want to use Hibernate 2nd level cache? Yes
-? Would you like to use Maven or Gradle for building the backend? Maven
-? Which other technologies would you like to use? Search engine using Elasticsearch
-? Would you like to enable internationalization support? No
-? Besides JUnit and Jest, which testing frameworks would you like to use? (Press <space> to select, <a> to toggle all, <i> to invert selectio
-n)
-? Would you like to install other generators from the JHipster Marketplace? No
+#root@nodehome1:/vagrant/jhuaa# jhipster
+#? Which *type* of application would you like to create? JHipster UAA server (for microservice OAuth2 authentication)
+#? What is the base name of your application? jhuaa
+#? As you are running in a microservice architecture, on which port would like your server to run? It should be unique to avoid port conflicts. 9999
+#? What is your default Java package name? com.mycompany.myapp
+#? Which service discovery server do you want to use? JHipster Registry (uses Eureka, provides Spring Cloud Config support and monitoring dashboards)
+#? Which *type* of database would you like to use? SQL (H2, MySQL, MariaDB, PostgreSQL, Oracle, MSSQL)
+#? Which *production* database would you like to use? MySQL
+#? Which *development* database would you like to use? H2 with disk-based persistence
+#? Do you want to use the Spring cache abstraction? Yes, with the Ehcache implementation (local cache, for a single node)
+#? Do you want to use Hibernate 2nd level cache? Yes
+#? Would you like to use Maven or Gradle for building the backend? Maven
+#? Which other technologies would you like to use? Search engine using Elasticsearch
+#? Would you like to enable internationalization support? No
+#? Besides JUnit and Jest, which testing frameworks would you like to use? (Press <space> to select, <a> to toggle all, <i> to invert selection)
+#? Would you like to install other generators from the JHipster Marketplace? No
 
-pcnt=`ps -ef | grep -v grep | grep "vagrant/jhipster-uaa" | wc -l | awk '{print $2}'`
+pcnt=`ps -ef | grep -v grep | grep "vagrant/jhuaa" | wc -l | awk '{print $2}'`
 if [[ $pcnt > 0 ]]; then
-	pid=`ps -ef | grep -v grep | grep "vagrant/jhipster-uaa" | awk '{print $2}'`
+	pid=`ps -ef | grep -v grep | grep "vagrant/jhuaa" | awk '{print $2}'`
 	kill -9 ${pid} 
 fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
 echo "making wallet docker image"
 ./mvnw package -Pdev -DskipTests verify jib:dockerBuild &
-
 
 echo "##########################################"
 echo "6) check all services"
