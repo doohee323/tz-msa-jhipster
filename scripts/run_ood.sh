@@ -47,9 +47,9 @@ echo "##########################################"
 echo "3) test to run this gateway app"
 echo "##########################################"
 cd /vagrant/gateway
-pcnt=`ps -ef | grep -v grep | grep "gateway/.mvn" | wc -l | awk '{print $2}'`
+pcnt=`ps -ef | grep -v grep | grep "vagrant/gateway" | wc -l | awk '{print $2}'`
 if [[ $pcnt > 0 ]]; then
-	pid=`ps -ef | grep -v grep | grep "gateway/.mvn" | awk '{print $2}'`
+	pid=`ps -ef | grep -v grep | grep "vagrant/gateway" | awk '{print $2}'`
 	kill -9 ${pid} 
 fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
@@ -84,9 +84,9 @@ npm install
 #? Besides JUnit and Jest, which testing frameworks would you like to use? (Press <space> to select, <a> to toggle all, <i> to invert selection)
 #? Would you like to install other generators from the JHipster Marketplace? No
 
-pcnt=`ps -ef | grep -v grep | grep "member/.mvn" | wc -l | awk '{print $2}'`
+pcnt=`ps -ef | grep -v grep | grep "vagrant/member" | wc -l | awk '{print $2}'`
 if [[ $pcnt > 0 ]]; then
-	pid=`ps -ef | grep -v grep | grep "member/.mvn" | awk '{print $2}'`
+	pid=`ps -ef | grep -v grep | grep "vagrant/member" | awk '{print $2}'`
 	kill -9 ${pid} 
 fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
@@ -98,11 +98,11 @@ echo "5) make wallet apps with jhipster"
 echo "##########################################"
 cd /vagrant
 mkdir -p wallet
-cd /vagrant/member
+cd /vagrant/wallet
 npm install
-pcnt=`ps -ef | grep -v grep | grep "wallet/.mvn" | wc -l | awk '{print $2}'`
+pcnt=`ps -ef | grep -v grep | grep "vagrant/wallet" | wc -l | awk '{print $2}'`
 if [[ $pcnt > 0 ]]; then
-	pid=`ps -ef | grep -v grep | grep "wallet/.mvn" | awk '{print $2}'`
+	pid=`ps -ef | grep -v grep | grep "vagrant/wallet" | awk '{print $2}'`
 	kill -9 ${pid} 
 fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
@@ -123,14 +123,17 @@ echo "##########################################"
 echo "7) kill all process"
 echo "##########################################"
 sleep 300
-pid=`ps -ef | grep -v grep | grep "gateway/.mvn" | awk '{print $2}'`
+pid=`ps -ef | grep -v grep | grep "vagrant/gateway" | awk '{print $2}'`
 kill -9 ${pid} 
 
-pid=`ps -ef | grep -v grep | grep "member/.mvn" | awk '{print $2}'`
+pid=`ps -ef | grep -v grep | grep "vagrant/member" | awk '{print $2}'`
 kill -9 ${pid} 
 
-pid=`ps -ef | grep -v grep | grep "wallet/.mvn" | awk '{print $2}'`
+pid=`ps -ef | grep -v grep | grep "vagrant/wallet" | awk '{print $2}'`
 kill -9 ${pid} 
+
+pid=`docker ps | grep "jhipster-registry" | awk '{print $1}'`
+docker stop ${pid}
 
 #mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg_ori
 #cp /vagrant/etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg

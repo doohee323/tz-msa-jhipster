@@ -22,6 +22,12 @@ cd wallet-app-compose
 #JHipster registry detected as the service discovery and configuration provider used by your apps
 #? Enter the admin password used to secure the JHipster Registry admin
 
+sed -i s/v5.0.0/v5.0.1/g jhipster-registry.yml
+
 docker-compose up -d
+docker images
+docker ps
+
+# docker container exec -u 0 -it wallet-app-compose_gateway-app_1_5e40fa42bfcf bash
 
 exit 0

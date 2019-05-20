@@ -18,15 +18,19 @@ This is a haproxy example on vagrant.
 ```
 	vagrant up
 	#vagrant destroy -f && vagrant up
+	vagrant ssh
 ```
 
-# Running process
+# Check services
 ```
 	registry: curl http://192.168.82.170:8761
 	gateway: curl http://192.168.82.170:8080/admin/gateway
 	# admin / admin
 	member: curl http://192.168.82.170:8081
 	wallet: curl http://192.168.82.170:8082
+
+	# when running with docker
+	elasticsearch: http://192.168.82.170:5601
 ```
 
 
