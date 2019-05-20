@@ -2,6 +2,7 @@
   "generator-jhipster": {
     "appsFolders": [
       "gateway",
+      "jhuaa",
       "member",
       "wallet"
     ],

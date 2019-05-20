@@ -24,6 +24,7 @@ cd wallet-app-compose
 
 sed -i s/v5.0.0/v5.0.1/g jhipster-registry.yml
 
+#docker-compose down
 docker-compose up -d
 docker images
 docker ps

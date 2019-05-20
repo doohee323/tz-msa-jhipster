@@ -15,6 +15,9 @@ Launch all your infrastructure by running: `docker-compose up -d`.
 - gateway (gateway application)
 - gateway's mysql database
 - gateway's elasticsearch search engine
+- jhuaa (uaa application)
+- jhuaa's mysql database
+- jhuaa's elasticsearch search engine
 - member (microservice application)
 - member's mysql database
 - member's elasticsearch search engine

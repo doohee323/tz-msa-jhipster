@@ -28,6 +28,32 @@ services:
       - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
       - discovery.type=single-node
 
+  jhuaa-app:
+    image: jhuaa
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+      - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+      - 'SPRING_DATASOURCE_URL=jdbc:mysql://jhuaa-mysql:3306/jhuaa?useUnicode=true&characterEncoding=utf8&useSSL=false'
+      - JHIPSTER_SLEEP=30
+      - 'SPRING_DATA_JEST_URI=http://jhuaa-elasticsearch:9200'
+      - 'SPRING_ELASTICSEARCH_REST_URIS=http://jhuaa-elasticsearch:9200'
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+  jhuaa-mysql:
+    image: 'mysql:8.0.16'
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=jhuaa
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+  jhuaa-elasticsearch:
+    image: 'docker.elastic.co/elasticsearch/elasticsearch:6.4.3'
+    environment:
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - discovery.type=single-node
+
   member-app:
     image: member
     environment:
