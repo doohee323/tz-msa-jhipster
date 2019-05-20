@@ -1,4 +1,4 @@
-This is a haproxy example on vagrant.
+This is a microservice with jhipster on vagrant.
 ==========================================================================
 
 # Features
