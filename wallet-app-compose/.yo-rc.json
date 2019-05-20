@@ -1,0 +1,17 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "gateway",
+      "member",
+      "wallet"
+    ],
+    "directoryPath": "../",
+    "gatewayType": "zuul",
+    "monitoring": "elk",
+    "consoleOptions": [
+      "curator"
+    ],
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "N2U3YjkzMTQwZjEwMzFkZTQ3YmU2NGM1YTBhMDFjNDVlN2ZiY2MxZjRlMjA5NWE1YWQ3MzY0NTQ5NjU4NjlhNTI5OTRlYTk4MDIwNmM5OWNhMjQxMGNiNTY3ZDc4MGZmYzk0Nw=="
+  }
+}

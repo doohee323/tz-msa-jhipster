@@ -47,7 +47,14 @@ echo "##########################################"
 echo "3) test to run this gateway app"
 echo "##########################################"
 cd /vagrant/gateway
+pcnt=`ps -ef | grep -v grep | grep "gateway/.mvn" | wc -l | awk '{print $2}'`
+if [[ $pcnt > 0 ]]; then
+	pid=`ps -ef | grep -v grep | grep "gateway/.mvn" | awk '{print $2}'`
+	kill -9 ${pid} 
+fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
+echo "making gateway's docker image"
+./mvnw package -Pdev -DskipTests verify jib:dockerBuild &
 
 echo "##########################################"
 echo "4) make member apps with jhipster"
@@ -57,7 +64,7 @@ mkdir -p member
 cd /vagrant/member
 npm install
 
-# fyi, you can follow these selections for jhipster Microservice app.
+# Fyi, you can follow these selections for jhipster Microservice app.
 # member: 8081, wallet: 8082
 #root@nodehome1:/vagrant/member# jhipster
 #? Which *type* of application would you like to create? Microservice application
@@ -77,7 +84,14 @@ npm install
 #? Besides JUnit and Jest, which testing frameworks would you like to use? (Press <space> to select, <a> to toggle all, <i> to invert selection)
 #? Would you like to install other generators from the JHipster Marketplace? No
 
+pcnt=`ps -ef | grep -v grep | grep "member/.mvn" | wc -l | awk '{print $2}'`
+if [[ $pcnt > 0 ]]; then
+	pid=`ps -ef | grep -v grep | grep "member/.mvn" | awk '{print $2}'`
+	kill -9 ${pid} 
+fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
+echo "making member docker image"
+./mvnw package -Pdev -DskipTests verify jib:dockerBuild &
 
 echo "##########################################"
 echo "5) make wallet apps with jhipster"
@@ -86,7 +100,14 @@ cd /vagrant
 mkdir -p wallet
 cd /vagrant/member
 npm install
+pcnt=`ps -ef | grep -v grep | grep "wallet/.mvn" | wc -l | awk '{print $2}'`
+if [[ $pcnt > 0 ]]; then
+	pid=`ps -ef | grep -v grep | grep "wallet/.mvn" | awk '{print $2}'`
+	kill -9 ${pid} 
+fi
 nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
+echo "making wallet docker image"
+./mvnw package -Pdev -DskipTests verify jib:dockerBuild &
 
 echo "##########################################"
 echo "6) check all services"
