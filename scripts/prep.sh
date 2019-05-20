@@ -15,9 +15,9 @@ sudo sh -c "echo 'export PATH=$PATH:.' >> $HOME_DIR/.bashrc"
 sudo sh -c "echo 'export HOME_DIR='$HOME_DIR >> $HOME_DIR/.bashrc"
 source $HOME_DIR/.bashrc
 
-##########################################
-echo 1) make swap memory
-##########################################
+echo "##########################################"
+echo "1) make swap memory"
+echo "##########################################"
 sudo free -m
 sudo fallocate -l 3G /swapfile
 sudo chmod 600 /swapfile
@@ -32,9 +32,9 @@ fi
 
 cat /proc/cpuinfo | grep processor | wc -l
 
-##########################################
-echo 1) install jhipster
-##########################################
+echo "##########################################"
+echo "2) install jhipster"
+echo "##########################################"
 apt-get -y update
 apt-get -y upgrade
 apt-get install curl -y
@@ -49,9 +49,9 @@ npm -v
 npm install -g yo
 npm install -g generator-jhipster
 
-##########################################
-echo 2) install docker
-##########################################
+echo "##########################################"
+echo "3) install docker"
+echo "##########################################"
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
@@ -60,9 +60,9 @@ apt-cache policy docker-ce
 sudo apt install docker-ce -y
 #sudo systemctl status docker
 
-##########################################
-echo 3) install docker-compose
-##########################################
+echo "##########################################"
+echo "4) install docker-compose"
+echo "##########################################"
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
