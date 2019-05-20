@@ -38,7 +38,8 @@ echo 1) install jhipster
 apt-get -y update
 apt-get -y upgrade
 apt-get install curl -y
-sudo apt install openjdk-8-jdk -y
+apt-get install openjdk-8-jdk -y
+apt-get install maven -y
 
 curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
@@ -49,7 +50,7 @@ npm install -g yo
 npm install -g generator-jhipster
 
 ##########################################
-echo 1) install docker
+echo 2) install docker
 ##########################################
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -60,16 +61,10 @@ sudo apt install docker-ce -y
 #sudo systemctl status docker
 
 ##########################################
-echo 1) install docker-compose
+echo 3) install docker-compose
 ##########################################
 sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
-
-##########################################
-echo 1) install maven
-##########################################
-sudo apt-get -y install maven
-
 
 exit 0
