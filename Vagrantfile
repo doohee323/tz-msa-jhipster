@@ -5,7 +5,7 @@ require_relative './bootstrap'
 
 Vagrant.configure("2") do |config|
    config.vm.provider "virtualbox" do |v|
-     v.customize ["modifyvm", :id, "--cpus", "1"]
+     v.customize ["modifyvm", :id, "--cpus", "8"]
    end
 
   $config['ip'].each do | host_name, host_ip |
