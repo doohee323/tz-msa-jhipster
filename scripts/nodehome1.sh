@@ -47,8 +47,10 @@ curl http://192.168.82.170:8761
 echo 1) test to run this gateway app.
 ##########################################
 cd /vagrant/gateway
-./mvnw -Pdev -DskipTests
-sleep 60
+nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
+#sleep 60
+#pid=`ps -ef | grep -v grep | grep "gateway/.mvn" | awk '{print $2}'`
+#kill -9 ${pid} 
 
 curl http://192.168.82.170:8080/admin/gateway
 # admin / admin
@@ -80,6 +82,11 @@ cd /vagrant/member
 #? Would you like to enable internationalization support? No
 #? Besides JUnit and Jest, which testing frameworks would you like to use? (Press <space> to select, <a> to toggle all, <i> to invert selection)
 #? Would you like to install other generators from the JHipster Marketplace? No
+
+nohup ./mvnw -Pdev -DskipTests >/dev/null 2>&1 &
+sleep 60
+#pid=`ps -ef | grep -v grep | grep "member/.mvn" | awk '{print $2}'`
+#kill -9 ${pid} 
 
 mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg_ori
 cp /vagrant/etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg 
